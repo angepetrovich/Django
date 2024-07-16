@@ -1,0 +1,18 @@
+{% extends 'lib_basic.html' %}
+{% block title %} Order details {% endblock %}
+
+{% block content %}
+<h1>Order details</h1>
+<p><strong>Date: </strong>{{ order.date }}</p>
+<p><strong>User:</strong> {{ order.user }}</p>
+
+{% for o in orders %}
+        <div><strong>Name: {{ o.dish.name }}</strong></div>
+        <div><strong>Category:</strong> {{o.dish.category }}</div>
+        <div><strong>Quantity:</strong> {{o.quantity }}</div>
+        <div><strong>Price for one:</strong> {{ o.dish.price }}</div>
+        <div><strong>Price for all: </strong>{{ o.final_price }}</div>
+	<p></p>
+{% endfor %}
+<p><strong>All sum:</strong> {{ order.final_price }}</p>
+{% endblock %}

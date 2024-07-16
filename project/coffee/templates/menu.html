@@ -1,0 +1,27 @@
+<!--
+Strona główna
+--> 
+
+{% extends "lib_basic.html" %}
+{% block title %} Menu {% endblock %}
+{% block content %}
+<h1> Coffeshop Menu</h1>
+{% for category in categories %}
+<h2> {{ category.name }} </h2>
+
+	{% for dish in dishes %}
+	{% if dish.category == category %}
+	
+	
+        	<div><strong>{{ dish.name }}</strong></div>
+       	 	<div>{{ dish.description }}</div>
+        	<div><strong>{{ dish.price }} zl </strong></div>
+                {% if user.is_authenticated %}
+		 <a href="{% url 'addOrderToCart' dish_id=dish.id %}"> Add </a>
+		{% endif %}
+    	
+	{% endif %}
+	{% endfor %}
+
+{% endfor %}
+{% endblock %}

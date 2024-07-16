@@ -1,0 +1,21 @@
+{% extends 'lib_basic.html' %}
+{% block title %} Koszyk {% endblock %}
+
+{% block content %}
+<h1>Cart</h1>
+{% if orders %}
+{% for o in orders %}
+  <div><strong>{{ o.dish.name }}</strong></div>
+  <div>{{ o.dish.price }}</div>
+  <div>{{ o.quantity }}</div>  
+  <td><a href="{% url 'remove_from_cart' order_item_id=o.id %}">Remove</a></td>
+  <p></p>
+{% endfor %}
+  <td colspan="5">All Sum: </td>
+  <td>{{ final_price }}</td>
+
+<p><a href="{% url 'addOrder' %}">Order</a></p>
+{% else %}
+<p>Cart is empty. </p>
+{% endif %}
+{% endblock %}
